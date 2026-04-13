@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Classes - Shaping Futures</title>
+
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{box-sizing:border-box;transition:all .3s ease}
+body{font-family:'Poppins',sans-serif;margin:0;padding:0;overflow-x:hidden;scroll-behavior:smooth;background:#fff}
+
+/* Navigation */
+
+nav
+{
+background:rgba(255,255,255,.98);
+backdrop-filter:blur(10px);
+padding:10px 5%;
+position:fixed;
+width:100%;
+ top:0;
+z-index:1000;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 15px rgba(0,0,0,.1)
+}
+
+ .logo-container{display:flex;align-items:center}
+
+ .logo-img{
+ height:60px;
+ width:auto;
+ border-radius:5px;
+ margin-right:12px
+}
+
+ .school-name
+ {
+  font-weight:800;
+  color:#0056b3;
+  font-size:1.4rem;
+  text-transform:uppercase;
+  letter-spacing:1px
+ }
+
+nav .nav-links a
+{
+ color:#2c3e50;
+ margin-left:20px;
+ text-decoration:none;
+ font-weight:600;
+ font-size:.9rem
+}
+
+nav .nav-links a:hover{color:#ff4757}
+
+/* HERO SECTION */
+
+.hero
+{
+ background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.7)),
+ url("building.png");
+ background-size:cover;
+ background-position:center;
+ background-attachment:fixed;
+ height:100vh;
+ color:white;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ text-align:center;
+ padding:20px
+}
+
+.hero h1
+{
+ font-size:4rem;
+ margin-bottom:10px;
+ letter-spacing:2px;
+ text-shadow:3px 3px 15px rgba(0,0,0,.6)
+}
+
+/* Buttons */
+
+ .btn
+ {
+ padding:12px 30px;
+ text-decoration:none;
+ border-radius:30px;
+ font-weight:bold;
+ margin:10px;
+ display:inline-block;
+ border:none;
+ cursor:pointer;
+ font-size:1rem
+}
+
+.btn-app{background:#ff4757;color:white}
+.btn-wa{background:#2ecc71;color:white}
+
+.btn:hover
+{ 
+ transform:translateY(-3px);
+ box-shadow:0 8px 20px rgba(0,0,0,.3)
+}
+
+/* Sections */
+
+section
+{ 
+ padding:80px 5%;
+ text-align:center
+}
+
+/* Services */
+
+ .services-grid
+{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+ gap:15px;
+ margin-top:30px
+}
+
+ .card
+ {
+ background:#f8f9fa;
+ padding:25px 15px;
+ border-radius:15px;
+ border-bottom:5px solid #2c3e50;
+ cursor:pointer
+}
+
+.card:hover
+{
+ border-bottom:5px solid #ff4757;
+ transform:translateY(-10px);
+ background:white;
+ box-shadow:0 10px 25px rgba(0,0,0,.1)
+}
+
+.card i
+{ 
+ font-size:2rem;
+ margin-bottom:15px
+}
+
+/* Contact */
+
+.contact-container
+{
+ display:flex;
+ flex-wrap:wrap;
+ gap:40px;
+ justify-content:center;
+ margin-top:30px
+}
+
+#whatsappForm
+{ 
+ flex:1;
+ min-width:300px;
+ background:#fff;
+ padding:30px;
+ border-radius:15px;
+ box-shadow:0 10px 40px rgba(0,0,0,.1);
+ text-align:left
+}
+
+input,textarea{
+width:100%;
+margin:10px 0;
+padding:12px;
+border:1px solid #ddd;
+border-radius:8px;
+font-family:inherit;
+font-size:1rem
+}
+
+.map-info{
+flex:1;
+min-width:300px;
+text-align:left
+}
+
+iframe{
+width:100%;
+border-radius:15px;
+margin-top:15px;
+border:none;
+height:350px
+}
+
+/* Admission Popup */
+
+#admissionPopup{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 0 50px rgba(0,0,0,.4);
+z-index:4000;
+width:90%;
+max-width:420px
+}
+
+/* Footer */
+
+footer{
+background:#2c3e50;
+color:white;
+padding:50px 10% 20px;
+text-align:center;
+margin-top:50px
+}
+
+.social-links{
+margin-bottom:30px
+}
+
+.social-links a{
+color:white;
+font-size:32px;
+margin:0 15px;
+text-decoration:none;
+display:inline-block
+}
+
+.social-links a:hover{
+color:#ff4757;
+transform:scale(1.2)
+}
+
+.wa-float{
+position:fixed;
+bottom:30px;
+right:30px;
+background:#25d366;
+color:white;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+text-decoration:none;
+z-index:1000;
+animation:pulse 2s infinite
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 0 0 rgba(37,211,102,.7)}
+70%{box-shadow:0 0 0 15px rgba(37,211,102,0)}
+100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo-container">
+<img src="logo.jpg" class="logo-img">
+<span class="school-name">Dynamic Classes</span>
+</div>
+
+<div class="nav-links">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#services">Facilities</a>
+<a href="#appointment">Contact</a>
+</div>
+
+</nav>
+
+<div class="hero" id="home">
+
+<h1 data-aos="fade-down">DYNAMIC CLASSES</h1>
+
+<p data-aos="fade-up" data-aos-delay="200" style="font-size:1.5rem;font-weight:300">
+Coaching, Schooling & Language Training
+</p>
+
+<div class="top-btns" data-aos="zoom-in" data-aos-delay="400">
+
+<a href="#appointment" class="btn btn-app">Enquiry Now</a>
+
+<a href="https://wa.me/919011470172" class="btn btn-wa" target="_blank">
+<i class="fab fa-whatsapp"></i> Chat with Us
+</a>
+
+<button class="btn btn-app" onclick="openAdmissionPopup()">
+Apply For Admission
+</button>
+
+</div>
+
+</div>
+
+<section id="about" data-aos="fade-up">
+
+<h2>Welcome to Dynamic Classes</h2>
+
+<p style="max-width:800px;margin:0 auto;line-height:1.8;color:#555">
+At Dynamic Classes, we believe in providing quality education through modern methods.
+Located in Dukhi Nagar, Jalna, we offer specialized coaching for school exams and
+comprehensive language training to help students excel in their careers.
+</p>
+
+</section>
+
+<section id="services" style="background:#f9f9f9">
+
+<h2 data-aos="fade-down">Our Facilities</h2>
+
+<div class="services-grid">
+
+<div class="card" data-aos="flip-up">
+<i class="fas fa-video" style="color:#ff4757"></i>
+<h3>CCTV Security</h3>
+<p>Safe and monitored environment.</p>
+</div>
+
+<div class="card" data-aos="flip-up" data-aos-delay="100">
+<i class="fas fa-snowflake" style="color:#3498db"></i>
+<h3>AC Campus</h3>
+<p>Air-conditioned classrooms for focus.</p>
+</div>
+
+<div class="card" data-aos="flip-up" data-aos-delay="200">
+<i class="fas fa-chalkboard-teacher" style="color:#2ecc71"></i>
+<h3>Digital Learning</h3>
+<p>Interactive smart boards.</p>
+</div>
+
+<div class="card" data-aos="flip-up" data-aos-delay="300">
+<i class="fas fa-globe" style="color:#f1c40f"></i>
+<h3>Language Hub</h3>
+<p>Expert training in English and other key languages.</p>
+</div>
+
+<div class="card" data-aos="flip-up" data-aos-delay="400">
+<i class="fas fa-clipboard-check" style="color:#0fe2f1"></i>
+<h3>Weekly Tests</h3>
+<p>Regular success evaluation.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="appointment">
+
+<h2 data-aos="fade-up">Find Us & Contact</h2>
+
+<div class="contact-container">
+
+<div class="map-info" data-aos="fade-right">
+
+<h3>📍 Contact Info</h3>
+
+<p><strong>Address:</strong> RVWM+54F, Ln 3, Dukhi Nagar, Millat Nagar, Bhawani Nagar, Jalna, Maharashtra 431213</p>
+
+<p><strong>Mobile:</strong> +91 9011470172</p>
+
+<iframe src="https://www.google.com/maps?q=RVWM+54F,+Ln+3,+Dukhi+Nagar,+Millat+Nagar,+Bhawani+Nagar,+Jalna,+Maharashtra+431213&output=embed"></iframe>
+
+<br><br>
+
+<a href="https://www.google.com/maps/dir/?api=1&destination=RVWM+54F,+Ln+3,+Dukhi+Nagar,+Millat+Nagar,+Bhawani+Nagar,+Jalna,+Maharashtra+431213"
+target="_blank" class="btn btn-app">
+📍 Get Direction on Google Maps
+</a>
+</div>
+
+<form id="whatsappForm" data-aos="fade-left">
+
+<h3>📩 Appointment Form</h3>
+
+<input type="text" id="userName" placeholder="Student Name" required>
+
+<input type="tel" id="userPhone" placeholder="WhatsApp Number" required>
+
+<input type="text" id="userClass" placeholder="Class/Course" required>
+
+<textarea id="userMsg" rows="3" placeholder="Message (Optional)"></textarea>
+
+<button type="button" onclick="sendToWhatsApp()" class="btn btn-wa" style="width:100%">
+<i class="fab fa-whatsapp"></i> Send WhatsApp Message
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<!-- Admission Popup -->
+
+<div id="admissionPopup">
+
+<h2 style="text-align:center">Student Admission</h2>
+
+<input type="text" id="studentName" placeholder="Student Name">
+
+<input type="text" id="fatherName" placeholder="Father Name">
+
+<input type="text" id="previousClass" placeholder="Previous Class">
+
+<input type="text" id="admissionClass" placeholder="Admission Class">
+
+<button onclick="sendAdmission()" class="btn btn-wa" style="width:100%">
+Submit Admission
+</button>
+
+<button onclick="closeAdmissionPopup()" class="btn btn-app" style="width:100%">
+Close
+</button>
+
+</div>
+
+<footer>
+
+<div class="social-links" data-aos="fade-up" data-aos-duration="1500">
+
+<a href="#"><i class="fab fa-facebook"></i></a>
+
+<a href="#"><i class="fab fa-instagram"></i></a>
+
+<a href="#"><i class="fab fa-youtube"></i></a>
+
+<a href="https://wa.me/919011470172"><i class="fab fa-whatsapp"></i></a>
+
+</div>
+
+<p>© 2026 Dynamic Classes. All Rights Reserved.</p>
+
+<p style="font-size:.8rem;opacity:.7">Dukhi Nagar, Jalna, Maharashtra</p>
+
+</footer>
+
+<a href="https://wa.me/919011470172" class="wa-float" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+
+AOS.init({duration:1000,once:true})
+
+function openAdmissionPopup(){
+document.getElementById("admissionPopup").style.display="block"
+}
+
+function closeAdmissionPopup(){
+document.getElementById("admissionPopup").style.display="none"
+}
+
+function sendAdmission(){
+
+let student=document.getElementById("studentName").value
+let father=document.getElementById("fatherName").value
+let previous=document.getElementById("previousClass").value
+let newClass=document.getElementById("admissionClass").value
+
+let text=`New Admission Request
+Student: ${student}
+Father: ${father}
+Previous Class: ${previous}
+Admission Class: ${newClass}`
+
+window.open(`https://wa.me/919011470172?text=${encodeURIComponent(text)}`)
+
+}
+
+function sendToWhatsApp(){
+
+let name=document.getElementById("userName").value
+let phone=document.getElementById("userPhone").value
+let course=document.getElementById("userClass").value
+let msg=document.getElementById("userMsg").value
+
+if(!name || !phone || !course){
+alert("Please fill important fields!")
+return
+}
+
+let text=`Website Inquiry
+Name: ${name}
+Class: ${course}
+Message: ${msg}`
+window.open(`https://wa.me/919011470172?text=${encodeURIComponent(text)}`)
+
+}
+
+</script>
+
+</body>
+</html>
